@@ -1,0 +1,39 @@
+{
+    "name": "alfa6661/laravel-firebase",
+    "description": "Firebase notification for laravel 5.2",
+    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alfa Adhitya",
+            "email": "alfa2159@gmail.com",
+            "homepage": "http://lab-informatika.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "laravel-notification-channels/backport": "dev-master",
+        "paragraph1/php-fcm": "*"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alfa6661\\Firebase\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alfa6661\\Firebase\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
