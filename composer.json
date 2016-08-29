@@ -1,7 +1,7 @@
 {
     "name": "alfa6661/laravel-firebase",
     "description": "Firebase notification for laravel 5.2",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "homepage": "https://github.com/alfa6661/laravel-firebase",
     "license": "MIT",
     "authors": [
         {
