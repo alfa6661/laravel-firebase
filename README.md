@@ -1,7 +1,7 @@
 # laravel-firebase
-Google Firebase Notification for Laravel 5.2
+Google Firebase Notification for Laravel
 
-This package makes it easy to send Firebase Notification with Laravel 5.2.
+This package makes it easy to send Firebase Notification with Laravel
 
 ## Installation
 
