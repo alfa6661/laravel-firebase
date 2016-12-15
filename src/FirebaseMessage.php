@@ -60,6 +60,13 @@ class FirebaseMessage
         return $this;
     }
 
+    /**
+     * Set notification sound
+     *
+     * @param string $value
+     *
+     * @return $this
+     */
     public function sound($value = 'default')
     {
         $this->notification->setSound($value);
@@ -67,6 +74,26 @@ class FirebaseMessage
         return $this;
     }
 
+    /**
+     * Set badge number. IOS only
+     *
+     * @param int $integer
+     *
+     * @return $this
+     */
+    public function badge($integer)
+    {
+        $this->notification->setBadge($integer);
+
+        return $this;
+    }
+
+    /**
+     * Set additional data
+     *
+     * @param array $values
+     * @return $this
+     */
     public function data(array $values = [])
     {
         $this->data = $values;
