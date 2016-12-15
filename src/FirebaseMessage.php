@@ -75,7 +75,7 @@ class FirebaseMessage
     }
 
     /**
-     * Set badge number
+     * Set badge number. IOS only
      *
      * @param int $integer
      *
