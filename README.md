@@ -1,4 +1,10 @@
 # laravel-firebase
+
+[![StyleCI](https://styleci.io/repos/66539893/shield?style=flat)](https://styleci.io/repos/66539893)
+[![Total Downloads](https://poser.pugx.org/alfa6661/laravel-firebase/downloads)](https://packagist.org/packages/alfa6661/laravel-firebase)
+[![Latest Stable Version](https://poser.pugx.org/alfa6661/laravel-firebase/v/stable)](https://packagist.org/packages/alfa6661/laravel-firebase)
+[![Latest Unstable Version](https://poser.pugx.org/alfa6661/laravel-firebase/v/unstable)](https://packagist.org/packages/alfa6661/laravel-firebase)
+
 Google Firebase Notification for Laravel
 
 This package makes it easy to send Firebase Notification with Laravel
