@@ -3,8 +3,8 @@
 namespace Alfa6661\Firebase;
 
 use Exception;
-use Illuminate\Support\ServiceProvider;
 use paragraph1\phpFCM\Client;
+use Illuminate\Support\ServiceProvider;
 
 class FirebaseServiceProvider extends ServiceProvider
 {
