@@ -2,19 +2,14 @@
 
 namespace Alfa6661\Firebase;
 
-use Alfa6661\Firebase\Exceptions\CouldNotSendNotification;
-use Config;
 use Exception;
 use paragraph1\phpFCM\Client;
 use paragraph1\phpFCM\Message;
 use paragraph1\phpFCM\Recipient\Device;
-use RuntimeException;
-use UnexpectedValueException;
 use Illuminate\Notifications\Notification;
 
 class FirebaseChannel
 {
-
     /**
      * @var paragraph1\phpFCM\Client
      */
@@ -64,8 +59,6 @@ class FirebaseChannel
                 $response = $this->client->send($this->message);
             }
         } catch (Exception $e) {
-
         }
     }
-
 }

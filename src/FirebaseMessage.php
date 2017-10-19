@@ -6,7 +6,6 @@ use paragraph1\phpFCM\Notification;
 
 class FirebaseMessage
 {
-
     public $notification;
 
     public $data = [];
@@ -61,7 +60,7 @@ class FirebaseMessage
     }
 
     /**
-     * Set notification sound
+     * Set notification sound.
      *
      * @param string $value
      *
@@ -75,7 +74,7 @@ class FirebaseMessage
     }
 
     /**
-     * Set badge number. IOS only
+     * Set badge number. IOS only.
      *
      * @param int $integer
      *
@@ -89,7 +88,7 @@ class FirebaseMessage
     }
 
     /**
-     * Set additional data
+     * Set additional data.
      *
      * @param array $values
      * @return $this
@@ -100,5 +99,4 @@ class FirebaseMessage
 
         return $this;
     }
-
 }
