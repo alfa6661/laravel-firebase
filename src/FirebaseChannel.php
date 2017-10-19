@@ -53,12 +53,14 @@ class FirebaseChannel
 
         $firebase = $notification->toFirebase($notifiable);
 
+        foreach ($devices as $device) {
+            $this->message->addRecipient(new Device($device));
+        }
+
+        $this->message->setNotification($firebase->notification)->setData($firebase->data);
+
         try {
             foreach ($devices as $device) {
-                $this->message->addRecipient(new Device($device))
-                    ->setNotification($firebase->notification)
-                    ->setData($firebase->data);
-
                 $response = $this->client->send($this->message);
             }
         } catch (Exception $e) {
