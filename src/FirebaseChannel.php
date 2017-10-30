@@ -11,14 +11,16 @@ use Illuminate\Notifications\Notification;
 class FirebaseChannel
 {
     /**
-     * @var paragraph1\phpFCM\Client
+     * FCM client.
+     *
+     * @var \paragraph1\phpFCM\Client
      */
     protected $client;
 
     /**
      * Push Service constructor.
      *
-     * @param paragraph1\phpFCM\Client $client
+     * @param \paragraph1\phpFCM\Client $client
      */
     public function __construct(Client $client)
     {
