@@ -6,6 +6,8 @@ use Exception;
 use paragraph1\phpFCM\Client;
 use paragraph1\phpFCM\Message;
 use paragraph1\phpFCM\Recipient\Device;
+use \Illuminate\Events\Dispatcher;
+use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notification;
 
 class FirebaseChannel
@@ -18,13 +20,22 @@ class FirebaseChannel
     protected $client;
 
     /**
+     * Events dispatcher.
+     *
+     * @var \Illuminate\Events\Dispatcher
+     */
+    protected $events;
+
+    /**
      * Push Service constructor.
      *
      * @param \paragraph1\phpFCM\Client $client
+     * @param \Illuminate\Events\Dispatcher $events
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, Dispatcher $events)
     {
         $this->client = $client;
+        $this->events = $events;
     }
 
     /**
@@ -54,6 +65,9 @@ class FirebaseChannel
                 $this->client->send($message);
             }
         } catch (Exception $e) {
+            $this->events->fire(
+                new NotificationFailed($notifiable, $notification, $this)
+            );
         }
     }
 }
