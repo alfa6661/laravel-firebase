@@ -16,47 +16,40 @@ class FirebaseChannel
     protected $client;
 
     /**
-     * @var paragraph1\phpFCM\Message
-     */
-    protected $message;
-
-    /**
      * Push Service constructor.
      *
      * @param paragraph1\phpFCM\Client $client
-     * @param paragraph1\phpFCM\Message $message
      */
-    public function __construct(Client $client, Message $message)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->message = $message;
     }
 
     /**
      * Send the given notification.
      *
-     * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param mixed $notifiable
+     * @param \Illuminate\Notifications\Notification $notification
      * @return void
      */
     public function send($notifiable, Notification $notification)
     {
         $devices = $notifiable->routeNotificationFor('firebase');
+
         if (empty($devices)) {
             return;
         }
 
         $firebase = $notification->toFirebase($notifiable);
 
-        foreach ($devices as $device) {
-            $this->message->addRecipient(new Device($device));
-        }
-
-        $this->message->setNotification($firebase->notification)->setData($firebase->data);
-
         try {
             foreach ($devices as $device) {
-                $response = $this->client->send($this->message);
+                $message = (new Message())
+                    ->addRecipient(new Device($device))
+                    ->setNotification($firebase->notification)
+                    ->setData($firebase->data);
+
+                $this->client->send($message);
             }
         } catch (Exception $e) {
         }
