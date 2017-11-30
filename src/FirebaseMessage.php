@@ -6,13 +6,25 @@ use paragraph1\phpFCM\Notification;
 
 class FirebaseMessage
 {
+    /**
+     * Notification.
+     *
+     * @var \paragraph1\phpFCM\Notification
+     */
     public $notification;
 
+    /**
+     * Custom data.
+     *
+     * @var array
+     */
     public $data = [];
 
     /**
-     * @param string $body
+     * Static constructor.
      *
+     * @param string $title
+     * @param string $body
      * @return static
      */
     public static function create($title = '', $body = '')
@@ -21,6 +33,9 @@ class FirebaseMessage
     }
 
     /**
+     * FirebaseMessage constructor.
+     *
+     * @param string $title
      * @param string $body
      */
     public function __construct($title = '', $body = '')
@@ -35,7 +50,6 @@ class FirebaseMessage
      * Set the message body.
      *
      * @param string $value
-     *
      * @return $this
      */
     public function body($value)
@@ -49,7 +63,6 @@ class FirebaseMessage
      * Set the message title.
      *
      * @param string $value
-     *
      * @return $this
      */
     public function title($value)
@@ -63,7 +76,6 @@ class FirebaseMessage
      * Set notification sound.
      *
      * @param string $value
-     *
      * @return $this
      */
     public function sound($value = 'default')
@@ -77,7 +89,6 @@ class FirebaseMessage
      * Set badge number. IOS only.
      *
      * @param int $integer
-     *
      * @return $this
      */
     public function badge($integer)

@@ -6,59 +6,68 @@ use Exception;
 use paragraph1\phpFCM\Client;
 use paragraph1\phpFCM\Message;
 use paragraph1\phpFCM\Recipient\Device;
+use \Illuminate\Events\Dispatcher;
+use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notification;
 
 class FirebaseChannel
 {
     /**
-     * @var paragraph1\phpFCM\Client
+     * FCM client.
+     *
+     * @var \paragraph1\phpFCM\Client
      */
     protected $client;
 
     /**
-     * @var paragraph1\phpFCM\Message
+     * Events dispatcher.
+     *
+     * @var \Illuminate\Events\Dispatcher
      */
-    protected $message;
+    protected $events;
 
     /**
      * Push Service constructor.
      *
-     * @param paragraph1\phpFCM\Client $client
-     * @param paragraph1\phpFCM\Message $message
+     * @param \paragraph1\phpFCM\Client $client
+     * @param \Illuminate\Events\Dispatcher $events
      */
-    public function __construct(Client $client, Message $message)
+    public function __construct(Client $client, Dispatcher $events)
     {
         $this->client = $client;
-        $this->message = $message;
+        $this->events = $events;
     }
 
     /**
      * Send the given notification.
      *
-     * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param mixed $notifiable
+     * @param \Illuminate\Notifications\Notification $notification
      * @return void
      */
     public function send($notifiable, Notification $notification)
     {
         $devices = $notifiable->routeNotificationFor('firebase');
+
         if (empty($devices)) {
             return;
         }
 
         $firebase = $notification->toFirebase($notifiable);
 
-        foreach ($devices as $device) {
-            $this->message->addRecipient(new Device($device));
-        }
-
-        $this->message->setNotification($firebase->notification)->setData($firebase->data);
-
         try {
             foreach ($devices as $device) {
-                $response = $this->client->send($this->message);
+                $message = (new Message())
+                    ->addRecipient(new Device($device))
+                    ->setNotification($firebase->notification)
+                    ->setData($firebase->data);
+
+                $this->client->send($message);
             }
         } catch (Exception $e) {
+            $this->events->fire(
+                new NotificationFailed($notifiable, $notification, $this)
+            );
         }
     }
 }
