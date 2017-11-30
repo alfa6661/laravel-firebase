@@ -5,10 +5,10 @@ namespace Alfa6661\Firebase;
 use Exception;
 use paragraph1\phpFCM\Client;
 use paragraph1\phpFCM\Message;
+use Illuminate\Events\Dispatcher;
 use paragraph1\phpFCM\Recipient\Device;
-use \Illuminate\Events\Dispatcher;
-use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Events\NotificationFailed;
 
 class FirebaseChannel
 {

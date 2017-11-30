@@ -4,8 +4,8 @@ namespace Alfa6661\Firebase;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
-use paragraph1\phpFCM\Client as FcmClient;
 use Illuminate\Support\ServiceProvider;
+use paragraph1\phpFCM\Client as FcmClient;
 
 class FirebaseServiceProvider extends ServiceProvider
 {
