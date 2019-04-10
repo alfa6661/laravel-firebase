@@ -65,7 +65,7 @@ class FirebaseChannel
                 $this->client->send($message);
             }
         } catch (Exception $e) {
-            $this->events->fire(
+            $this->events->dispatch(
                 new NotificationFailed($notifiable, $notification, $this)
             );
         }
