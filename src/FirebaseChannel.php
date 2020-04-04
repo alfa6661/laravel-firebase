@@ -57,6 +57,10 @@ class FirebaseChannel
             return;
         }
 
+        if (!is_array($devices)) {
+            throw new Exception('Firebase notification method "routeNotificationForFirebase" in ' . $notifiable->getTable() . ' should return an array');
+        }
+
         $firebase = $notification->toFirebase($notifiable);
 
         try {
