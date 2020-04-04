@@ -49,8 +49,16 @@ class FirebaseChannel
     {
         $devices = $notifiable->routeNotificationFor('firebase');
 
+        if (!method_exists($notifiable, 'routeNotificationForFirebase')) {
+            throw new Exception('Firebase notification method "routeNotificationForFirebase" is not implemented but was called for ' . $notifiable->getTable());
+        }
+
         if (empty($devices)) {
             return;
+        }
+
+        if (!is_array($devices)) {
+            throw new Exception('Firebase notification method "routeNotificationForFirebase" in ' . $notifiable->getTable() . ' should return an array');
         }
 
         $firebase = $notification->toFirebase($notifiable);
